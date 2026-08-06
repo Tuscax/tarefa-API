@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display: flex; flex-direction: column;">
+    <label for="cep"></label>
+    Informe o CEP
+    <input type="text" id="cep" name="cep">
+    <label for="bairro "> Bairro</label>
+    <input type="text" id="bairro" name="bairro">
+    <label for="logradouro "> Rua</label>
+    <input type="text" id="logradouro" name="logradouro">
+    <label for="estado "> Estado</label>
+    <input type="text" id="estado" name="estado">
+    01001000
+    <a href="Inicio.html"> Link</a>
+    <script type="module">
+        const input = document.getElementById("cep")
+        let bairro = document.getElementById("bairro")
+        input.addEventListener("input", async (e)=> {
+            if(e.target.value.length < 8) return
+            else  {
+                const fetchData = await fetch(`https://viacep.com.br/ws/${e.target.value}/json/`)
+                const data = await fetchData.json()
+                console.log(data)
+                bairro.value = data.bairro  
+                console.log(bairro)
+                logradouro.value = data.logradouro
+                estado.value = data.estado
+                
+          }
+        })
+
+         </script>
+</body>
+</html>
